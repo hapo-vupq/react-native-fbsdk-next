@@ -1,6 +1,7 @@
 package com.facebook.reactnative.androidsdk;
 
 import com.facebook.Profile;
+import com.facebook.ProfileTracker;
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
@@ -29,11 +30,13 @@ public class FBProfileModule extends ReactContextBaseJavaModule {
   }
 
     /**
-    * Get the current logged profile.
-    * @param callback Use callback to pass the current logged profile back to JS.
-    */
+     * Get the current logged profile.
+     * 
+     * @param callback Use callback to pass the current logged profile back to JS.
+     */
     @ReactMethod
-    public void getCurrentProfile(Callback callback) {
+    public void getCurrentProfile(final Callback callback) {
+      // Return the profile object as a ReactMap.
       if (Profile.getCurrentProfile() == null) {
         mProfileTracker = new ProfileTracker() {
           @Override
